@@ -4,6 +4,12 @@ window.onload = function() {
     var ctx = stage.getContext("2d")
     document.addEventListener("keydown", keypush)
 
+    var apples = document.getElementById("count_apple")
+    console.log(apples)  
+
+    
+    
+
         setInterval(game, 100)
 
          const vel = 1 // qtde de casas que a cobra vai andar a cada setInterval
@@ -14,6 +20,7 @@ window.onload = function() {
          var qtdePieces = 20
          var appleX = 15 //posição da maçã
          var appleY = 15
+         var snakeLength = 0
 
          var trail = [] //rastro da cobra
          tail = 5
@@ -68,7 +75,7 @@ window.onload = function() {
             //comendo a maçã e reposicionando ela
             if(appleX==px && appleY==py){
                 tail++
-                //snakeLength ++
+                apples.textContent = trail.length - 4
                 appleX = Math.floor(Math.random() * qtdePieces)
                 appleY = Math.floor(Math.random() * qtdePieces)
             }
@@ -93,8 +100,7 @@ window.onload = function() {
               
               break
 
-              case 38: //cima
-              // if(!movingToDown){
+              case 38: //cima             
                 if(vx != 0 && vy != vel){
                   vx = 0
                   vy = -vel
@@ -110,8 +116,7 @@ window.onload = function() {
               
               break
 
-              case 40: //baixo
-              // if(!movingToUp){
+              case 40: //baixo             
                 if(vx != 0 && vy != -vel){
                   vx = 0
                   vy = vel

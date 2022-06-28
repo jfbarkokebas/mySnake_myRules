@@ -1,0 +1,6 @@
+1)criação de uma maçã envenenada verde: se comer morre ou 
+perde tamanho
+
+2) implementar estagios com velocidades do setTime out maiores
+
+    - TAIL = 13 : PASSA DE ESTAGIO

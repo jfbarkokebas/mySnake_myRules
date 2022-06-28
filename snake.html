@@ -4,6 +4,7 @@
     <title>snake</title>
   </head>
   <body>
+    <h1>Pressione ENTER para começar</h1>
     <canvas id="stage" width="400" height="400"></canvas>
     <script type="text/javascript">
 
@@ -84,26 +85,47 @@
 
                 function keypush(event) {
 
+                  
+
                   switch(event.keyCode){
 
-                    case 37: //esquerda
-                      vx = -vel
-                      vy = 0
+                    case 13:
+                      vx = 0
+                      vy = vel
+                      break
+
+                    case 37: //esquerda                    
+                      if(vx != vel && vy != 0){
+                        vx = -vel
+                        vy = 0
+                      }
+                      
                       break
 
                       case 38: //cima
-                      vx = 0
-                      vy = -vel
+                      // if(!movingToDown){
+                        if(vx != 0 && vy != vel){
+                          vx = 0
+                          vy = -vel
+                        }
+                      
                       break
 
-                      case 39: //direita
-                      vx = vel
-                      vy = 0
+                      case 39: //direita                
+                        if(vx != -vel && vy != 0){
+                          vx = vel
+                          vy = 0
+                        }
+                      
                       break
 
                       case 40: //baixo
-                      vx = 0
-                      vy = vel
+                      // if(!movingToUp){
+                        if(vx != 0 && vy != -vel){
+                          vx = 0
+                          vy = vel
+                        }
+
                       break
 
                       default:

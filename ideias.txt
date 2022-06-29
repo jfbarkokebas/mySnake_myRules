@@ -3,4 +3,4 @@ perde tamanho
 
 2) implementar estagios com velocidades do setTime out maiores
 
-    - TAIL = 13 : PASSA DE ESTAGIO
+    - TRAIL = 13 : PASSA DE ESTAGIO, OU FAZ COCO (POISON) E RETORNA PRA 5

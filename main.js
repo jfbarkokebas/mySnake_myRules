@@ -20,18 +20,28 @@ window.onload = function() {
          var qtdePieces = 20
          var appleX = 15 //posição da maçã
          var appleY = 15
-         var snakeLength = 0
+         var shit_x = 10
+         var shit_y = 10
+         var poison_x = 0
+         var poison_y = 0
+         
 
          var trail = [] //rastro da cobra
          tail = 5
 
-         function game() {
 
-            px += vx
-            py += vy
+         function endGame(){
+            if(trail[i].x == px && trail[i].y == py){
+              vx=vy=0
+              tail =5
+            }
 
-            //movendo a cobra através das paredes
-            if(px < 0){
+           
+            
+         }
+
+         function crossingTheWall(){
+          if(px < 0){
             px = qtdePieces - 1
             }
             if(px > qtdePieces -1){
@@ -44,6 +54,39 @@ window.onload = function() {
             py = 0
             }
 
+         }
+
+         function eatingApples(){
+          if(appleX==px && appleY==py){
+            tail++
+            apples.textContent = trail.length - 4
+            appleX = Math.floor(Math.random() * qtdePieces)
+            appleY = Math.floor(Math.random() * qtdePieces)
+        }
+         }
+
+          function setingPoison(){
+            if (trail.length > 7){
+              ctx.fillStyle = "#00FF00"
+              ctx.fillRect(
+                poison_x = shit_x * lenghtPiece,
+                poison_y = shit_y * lenghtPiece,
+                lenghtPiece, 
+                lenghtPiece
+            )            
+          }
+         }
+
+         function game() {
+
+            px += vx
+            py += vy
+
+            //movendo a cobra através das paredes
+
+            crossingTheWall()
+            
+
             //colorindo os elementos
             ctx.fillStyle = "black"
             ctx.fillRect(0, 0, stage.width, stage.height)
@@ -54,15 +97,23 @@ window.onload = function() {
 
             ctx.fillStyle = "#C0C0C0"
             for(i=0; i<trail.length; i++){
-                ctx.fillRect(trail[i].x * lenghtPiece,
-                trail[i].y * lenghtPiece,
-                lenghtPiece, lenghtPiece)
+                ctx.fillRect(
+                  trail[i].x * lenghtPiece,
+                  trail[i].y * lenghtPiece,
+                  lenghtPiece, 
+                  lenghtPiece
+                )
 
-                if(trail[i].x == px && trail[i].y == py){
-                    vx=vy=0
-                    tail =5
-                }
+                endGame()
+                
+               
+                
+
+            
             }
+
+           setingPoison()
+
 
             
             //push() -->coloca o elemnto no fim do array
@@ -73,12 +124,7 @@ window.onload = function() {
             }
 
             //comendo a maçã e reposicionando ela
-            if(appleX==px && appleY==py){
-                tail++
-                apples.textContent = trail.length - 4
-                appleX = Math.floor(Math.random() * qtdePieces)
-                appleY = Math.floor(Math.random() * qtdePieces)
-            }
+            eatingApples()
         }
 
         function keypush(event) {
